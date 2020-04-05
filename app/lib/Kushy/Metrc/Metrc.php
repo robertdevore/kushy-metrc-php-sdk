@@ -1,11 +1,11 @@
 <?php
 /**
  * Metrc API SDK for Kushy
- * 
+ *
  * Base class that all the other route classes extend from to access API client.
  * A Guzzle client is created with the provided API keys
  * and extended classes access the client via `$this->client()`
- *  
+ *
  * @package Kushy
  * @subpackage Metrc SDK
  * @since 0.0.1
@@ -20,8 +20,7 @@ use GuzzleHttp\Client;
 /**
  * A client to access the Metrc API
  */
-class Metrc
-{
+class Metrc {
 
     protected $apiVendorKey;
     protected $apiUserKey;
@@ -37,19 +36,17 @@ class Metrc
      * @param string $apiVendorKey
      * @param string $apiUserKey
      */
-    public function __construct($stateAbbreviation, $apiVendorKey, $apiUserKey, $environment = 'production')
-    {
+    public function __construct( $stateAbbreviation, $apiVendorKey, $apiUserKey, $environment = 'production' ) {
         $this->stateAbbreviation = $stateAbbreviation;
-        $this->version = $version;
-        $this->apiVendorKey = $apiVendorKey;
-        $this->apiUserKey = $apiUserKey;
+        $this->version           = $version;
+        $this->apiVendorKey      = $apiVendorKey;
+        $this->apiUserKey        = $apiUserKey;
 
         /**
          * Set the base URL according to production or sandbox parameter
          * If the user doesn't set one, we assume it's production
          */
-        switch($environment)
-        {
+        switch( $environment ) {
             case 'production':
                 $this->production();
                 break;
@@ -63,7 +60,7 @@ class Metrc
 
         /**
          * Create a new Guzzle client with constructed vars
-         * Separated in case we need to reset client 
+         * Separated in case we need to reset client
          * (like switching from Sandbox to Production)
          */
         $this->newClient();
@@ -74,13 +71,12 @@ class Metrc
      *
      * @return void
      */
-    protected function newClient()
-    {
-        $this->client = new Client([
-            // Base URI is used with relative requests
+    protected function newClient() {
+        $this->client = new Client( [
+            // Base URI is used with relative requests.
             'base_uri' => $this->baseUrl,
-            'auth' => [$this->apiVendorKey, $this->apiUserKey],
-        ]);
+            'auth'     => [$this->apiVendorKey, $this->apiUserKey],
+        ] );
     }
 
     /**
@@ -89,8 +85,7 @@ class Metrc
      *
      * @return void
      */
-    public function sandbox()
-    {
+    public function sandbox() {
         $this->baseUrl = "https://sandbox-api-". $this->stateAbbreviation .".metrc.com/";
         $this->newClient();
     }
@@ -100,8 +95,7 @@ class Metrc
      *
      * @return void
      */
-    public function production()
-    {
+    public function production() {
         $this->baseUrl = "https://api-". $this->stateAbbreviation .".metrc.com/";
         $this->newClient();
     }

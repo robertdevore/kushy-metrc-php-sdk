@@ -2,13 +2,13 @@
 
 /**
  * Plant Batches API
- * 
+ *
  * Access the Metrc Plant Batches API and request the latest data
- * 
+ *
  * @category POST
  * @source /packages/v1/adjust
  * @see https://api-ca.metrc.com/Documentation/#Packages.post_packages_v1_adjust
- * 
+ *
  */
 
 namespace Kushy\Tests;
@@ -47,12 +47,12 @@ $sampleData = '
     ]
   }
 ]';
-$sampleData = json_decode($sampleData);
-
+$sampleData    = json_decode( $sampleData );
 $licenseNumber = 'A12-0000015-LIC';
 
-$metrc = new Sales;
-$results = $metrc->updateReceipts($licenseNumber, $sampleData);
+$metrc   = new Sales;
+$results = $metrc->updateReceipts( $licenseNumber, $sampleData );
 
-print_r($results);
-
+echo '<pre>';
+print_r( $results );
+echo '</pre>';

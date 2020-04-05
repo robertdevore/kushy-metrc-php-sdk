@@ -2,13 +2,13 @@
 
 /**
  * Strains API
- * 
+ *
  * Access the Metrc Strains API and request the latest data
- * 
+ *
  * @category POST
  * @source /strains/v1/create
  * @see https://api-ca.metrc.com/Documentation/#Strains.post_strains_v1_create
- * 
+ *
  */
 
 namespace Kushy\Tests;
@@ -42,12 +42,12 @@ $sampleData = '
     "SativaPercentage": 75.0
   }
 ]';
-$sampleData = json_decode($sampleData);
-
+$sampleData    = json_decode( $sampleData );
 $licenseNumber = 'CML17-0000001';
 
-$metrc = new Strains;
-$strains = $metrc->createStrains($licenseNumber, $sampleData);
+$metrc   = new Strains;
+$strains = $metrc->createStrains( $licenseNumber, $sampleData );
 
-print_r($strains);
-
+echo '<pre>';
+print_r( $strains );
+echo '</pre>';

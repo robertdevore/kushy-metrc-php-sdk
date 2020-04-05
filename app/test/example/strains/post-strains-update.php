@@ -2,13 +2,13 @@
 
 /**
  * Strains API
- * 
+ *
  * Access the Metrc Strains API and update strains via POST
- * 
+ *
  * @category POST
  * @source /strains/v1/update
  * @see https://api-ca.metrc.com/Documentation/#Strains.post_strains_v1_update
- * 
+ *
  */
 
 namespace Kushy\Tests;
@@ -35,12 +35,12 @@ $sampleData = '
     "SativaPercentage": 75.0
   }
 ]';
-$sampleData = json_decode($sampleData);
-
+$sampleData    = json_decode( $sampleData );
 $licenseNumber = 'CML17-0000001';
 
-$metrc = new Strains;
-$strains = $metrc->updateStrains($licenseNumber, $sampleData);
+$metrc   = new Strains;
+$strains = $metrc->updateStrains( $licenseNumber, $sampleData );
 
-print_r($strains);
-
+echo '<pre>';
+print_r( $strains );
+echo '</pre>';
